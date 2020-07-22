@@ -1,0 +1,43 @@
+1、目的 ：使用github托管项目代码
+
+2、基本概念：
+    -仓库（Repository）：用来存放项目代码。每个项目对应一个仓库，多个开源项目对应多个仓库
+    -收藏（Star）:收藏项目，方便下次查看
+    -复制克隆项目（Fork)：该Fork的项目是独立存在的
+    -发起请求（Pull Request）:发起分支合并请求，等待审核
+    -关注（Watch）：获取关注的项目的动态
+    -事务卡片（Issue）:发现代码BUG，但是目前没有成型代码，需要讨论使用。
+    -Github主页：左侧主要显示用户动态以及关注用户或关注仓库的动态；右侧显示所有的git库
+    -仓库主页
+    -个人主页
+
+3、git Bash命令使用：  基本操作同linux一样
+    -git statu :获取当前状态
+    -git add 文件名 ：将文件提交到暂存区
+    -git commit -m"提交描述" ：将文件提交到Git仓库
+    
+4、git初始化仓库创建和操作
+    -设置用户名
+        git config --global user.name '349381896'
+    -设置用户名邮箱
+        git config --global user.email '384931896@qq.com'
+    -在文件内初始化git（创建git仓库）
+        -cd test
+       - git init
+    -修改仓库文件：用vim编辑器编辑即可  
+        -第二通过git add 文件名   
+        -再通过git commit -m"提交描述" 提交即可保存
+    -删除仓库文件
+        -第一步rm -rf 文件名
+        -第二步git rm 文件名
+        -第三步git commit -m"提交描述" 提交到仓库
+    -将本地仓库同步到git远程仓库
+        -克隆：git clone + 仓库地址
+        -git push -u origin master:将本地仓库同步到git服务器
+    -指明本地项目需要关联的远程仓库
+        -git remote add origin   + 仓库链接
+    -同步合并
+        -git pull(远程代码就更新了,相当于再次刷新,如果服务器端修改了代码,直接拉取一下,和服务器保持一致的意思)
+        -git pull origin master --allow-unrelated-histories //把远程仓库和本地同步，消除差异
+    -查看所有分支（其中远程分支是红色的）
+        -git branch -a

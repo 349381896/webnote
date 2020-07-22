@@ -1,0 +1,33 @@
+1)bs4：安装库pip install bs4  
+    -是一个可以从HTML或XML文件中提取数据的Python库
+    -官方文档链接：https://beautifulsoup.readthedocs.io/zh_CN/v4.4.0/
+
+
+2）lxml库：安装 pip install lxml
+    -xpath是一门在xml文档中查找信息的语言
+        -概念：
+            -节点：Node
+                -元素、属性、文本、命名空间、文档（根）节点
+            -节点关系：
+                -父（parent）
+                -子（Children)
+                -同胞（Sibling)
+                -先辈（Ancestor)
+                -后代（Descendant)
+        -xpath语法
+                    |表达式                   +++                     描述                           
+                    |nodename                 |                      | 选取此节点所有子节点 
+                    |/                        |                      | 从任意子节点中选取
+                    |//                       |                      | 从根节点选取
+                    |.                        |                      | 选取当前节点
+                    |..                       |                      | 选取当前节点的父节点
+                    |@                        |                      | 选取属性
+
+
+解析器比较
+解析器                              速度                        难度
+re                                  最快                        难
+Beautifulsoup                       慢                          简单
+lxml                                快                          一般
+
+

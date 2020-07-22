@@ -1,0 +1,125 @@
+1)matlab组成： 详细介绍https://www.cnblogs.com/Skyda/p/10071194.html
+    -Numpy             +    scipy       +    pandas     +       matplotlib
+    -数据计算   +    科学应用    ＋    数据清洗   ＋       数据可视化
+
+        a）Numpy概述：
+            -基于c语言的python接口的数值算法库
+            -开源免费
+            -弥补了python语言在数值计算方面的短板
+            -作为常用科学计算工具的底层支撑
+        b)Numpy的性能:
+            1 简化代码编写，提高开发效率
+            2 通过优化底层实现，提高运行速度
+                基础：
+                    1 数组
+                    2 Numpy中的数组是ndarray类实例化的对象：
+                            实例数据：数组的内容
+                            元数据：对数组的描述
+                            大部分对数组的操作仅仅是对元数据的操作，以此提高执行性能
+                    3 Numpy中的数组必须是同质的，即所有元素的数据类型必须完全相同
+                    4 dtype和shape属性分别表示元素类型和维度
+                    5 实例化
+                            np.arange(起始值，终止值，步长)
+                            默认起始值0
+                            默认步长：1
+                            np.array(任何可被解释为数组的序列)
+                    6 类型转换astype(目标类型)->转换后的新数组
+                    7 '<U21' 表示字符串，其中每个字符都是小端字节序的21位Unicode字符
+
+    -数据可视化(Matplotlib)：
+        1 基本绘图
+                plot(水平坐标，垂直坐标)
+         2 线型，线宽和颜色
+                plot(...,linestyle=线型，linewidth=线宽，color=颜色,...)
+                线形:[-]/--/:./o/o-/...
+                线宽：0-oo
+                color:dodgerblue/orangeered/limegreen/red/blue/...
+        3 设置坐标范围
+                xlim(水平坐标最小值，水平坐标最大值)
+                ylim(水平坐标最大值，水平坐标最大值)
+                坐标范围越大，图形越小，反而反之。
+        4 设置坐标刻度
+                xticks([水平轴刻度位置])  
+                yticks([垂直轴刻度位置])
+                表示数学的字符pi(  [r'$-\pi$']   )
+                表示数学2分之pi (  r'$-\frac{\pi}{2}$'  )
+        5 设置坐标轴属性
+                ax = gca() # 获取当前坐标轴图
+                ax.spines['left'] - 左纵轴
+                    ax.spines['left'].set_position(('data', 0))
+                ax.spines['right'] - 右纵轴
+                ax.spines['top'] - 上横轴
+                ax.spines['bottom'] - 下横轴
+                XX轴.set_position((坐标系，坐标值)) #设置位置
+                    
+                XX轴.set_color(颜色) #设置颜色
+                    ax.spines['top'].set_color('none')
+        6 图例
+                plot(...,label=图例标签,...)
+                legend([loc=显示位置])
+        7 添加特点
+                scatter(水平坐标，垂直坐标，s=大小,marker=点型,
+                    edgecolor=边缘色,facecolor=填充色,zorder=Z顺序)
+        8 备注
+                annotate(
+                    备注文本，
+                    xy =目标坐标，
+                    xycoords =目标坐标系,
+                    xytext=文本坐标，
+                    textcoords=文本坐标系,
+                    fontsize=字体大小,
+                    arrowprops=箭头属性)
+        9 图形(窗口)对象
+                    figure(窗口名(标题栏文本),figsize=大小，dip=分辨率,facecolor=颜色)
+                    如果与指定窗口名对应的图形对象不存在，那么就新建一个图形窗口，如果已存在，那么不会再新建图形窗口，而是将已存在的那个图形窗口设置为当前窗口
+                    title(窗口标题,fontsize=字体大小)
+                    xlabel（垂直轴标签,fontsize=字体大小）
+                    tick_params(labelsize=刻度标签字体大小)
+                    grid(linestyle=网格线型)
+        10 子坐标图
+                    1 矩阵布局
+                        subplot(行数，列数，图号)
+                        tight_layout() #紧凑布局
+                    2 删格布局
+                        删格定位器 = mp.GridSpec(行数，列数)
+                        subplot(删格定位器[行，列]
+                        
+                    3 自由布局
+                        axes([左，底，宽，高]) # 归一化单位
+        11 刻度定位器
+                    xxxLocator(定位规则)
+                    ax = gca()
+                    ax.xaxis  水平坐标
+                    ax.yaxis  垂直坐标
+                    坐标轴.set_major_locator(刻度定位器) #主刻度
+                    坐标轴.set_minor_locator(刻度定位器) #次刻度
+                    mp.axis('off') #关闭坐标轴
+        12 区域填充
+                 fill_between(水平坐标，起点垂直坐标，终点垂直坐标，color=颜色,alpha=透明度    )
+        13 条形图
+                bar(水平坐标，绝对高度，相对宽高,color=颜色,label=图例标签，alpha=透明度)
+        14 饼图
+                pie(值数组，间隙数组，标签数组，颜色数组,shadow =是否带阴影，startangle=起始角度)
+        15 等高线图
+                contour(点阵X坐标矩阵，点阵Y坐标矩阵，点阵Z坐标矩阵，梯度数,colors=颜色,linewidths=线宽)
+        16 热力图
+    
+        17 网格线
+                ax = gca()
+                ax.grid(which="major/minor",axis='x/y/both')
+        18 半对数坐标
+                 semi(同plot)
+        19 极坐标
+                gca(projection='polar') #创建极坐标图
+                plot/scatter(极角，极径)
+        20 三维坐标系
+                from mp;_toolkits.mplot3d import axes3d
+                1 三维散点
+                    ax.scatter(x坐标，Y坐标，Z坐标，s= 大小，marker=点形 ，
+                                edgecolor=边缘色，fancecolor=填充色，
+                                zorder=Z顺序)
+                2 空间曲面
+                    ax.plot_surface(点阵X坐标，点阵Y坐标矩阵，点阵Z坐标矩阵，rstride=行跨距，
+                                    cstride=列跨距，cmap=颜色映射)
+                    ax.plot_wireframe(点阵X坐标矩阵，点阵Y坐标矩阵，点阵Z坐标矩阵，
+                                    rstride=行跨距，cstride=列跨距，linewidth=线宽，color=颜色)

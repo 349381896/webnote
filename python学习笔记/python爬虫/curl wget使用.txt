@@ -1,0 +1,37 @@
+
+1)curl的使用，参数情况
+----------------------------------------------------------------------------------------------------------------------------
+|参数                        |说明                                       |示例
+|-A                          |设置user-agent                            |curl -A "Chrome"  http://www.baidu.Chrome
+|-X                          |用指定方式请求                             |curl -X POST http://www.httpbin.org/
+|-I                          |只返回请求的头信息                         |
+|-d                          |以POST方式请求url,并发送相应参数            |-d a=1 -d b=2 -d c=3
+|                            |                                          |-d “a=1&b=2&c=3"
+|                            |                                          |-d @filename
+|-O                          |下载文件并以远程的文件名保存                |curl -O http://www.httpbin.org/image/jepg
+|-o                          |下载文件并以指定文件名保存                  |curl -0 fox.jepg http://www.httpbin.org/image/jepg     
+|-L                          |跟随重定向请求                             |curl -IL  http://www.baidu.com/
+|-H                          |设置头信息                                 |curl -o image.png -H "accept:image/png"http://httpbin.org/image                                                       
+|-K                          |允许发起不安全的SSL请求
+|-b                          |发起并设置带cookies的请求                   |curl -b a=test http://httpbin.org/cookies
+|-s                          |不显示其它无关信息
+|-V                          |显示链接过程中的所有信息
+
+自定义一个命令，查看本机外网IP
+    alias   myip="curl http://httpbin.org/get|grep -E '\d+' |grep -v User-Agent|cut -d '\"' -f4"
+
+
+2)wget的使用，专注于下载的linux指令
+————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+|参数                                       说明                                        示例
+|-O                                         以指定文件名保存下载的文件                    wget -O test.png http://httpbin.org/image/png  
+|--limit-rate                               以指定的速度下载目标
+|-c                                         断点续传
+|-b                                         后台下载
+|-U                                         指定客户端名称                               wget -U "Chrome" http:baidu.com/
+|--mirror                                   镜像某个目标网站            
+|-p                                         下载页面中所有相关资源
+|-r                                         递归下载所有网页中所有的链接
+|--convert-links                                                                             相对路径变为绝对路径
+
+3）httpie工具的使用，比起curl好用点
