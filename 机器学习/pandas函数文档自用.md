@@ -1,14 +1,14 @@
 # pandas库一些常用函数、方法记录（自用，其中有很多是参考官方和网友的，这里只是简单汇总）
 ```import pandas as pd```
 
-**1）、pd.Series(data, index=index, dtype=dtype)**
+## 1）、pd.Series(data, index=index, dtype=dtype)
 |    参数           |                   说明                        |
 |-------------------|-----------------------------------------------|
 |   data            |数据，可以是列表，字典或Numpy数组
 |   index           |索引，为可选参数
 |   dtype           |数据类型，为可选参数
 
-**2)、df = pd.DataFrame(data, index=index, columns=columns) DataFrame对象的创建**
+##  2)、df = pd.DataFrame(data, index=index, columns=columns) DataFrame对象的创建
 - 当axis=1时，数组的变化是横向的，体现出列的增加或者减少。反之，当axis=0时，数组的变化是纵向的，体现出行的增加或减少。
 
 |    参数           |                   说明                        |
@@ -17,7 +17,7 @@
 |   index           |索引，为可选参数
 |   columns         |列标签，为可选参数
 
-***2-1）、DataFrame对象性质***
+### 2-1）、DataFrame对象性质(二维表格)
 |    属性           |                   说明                        |
 |-------------------|-----------------------------------------------|
 |   df.values       |返回numpy数组表示的数据
@@ -27,11 +27,12 @@
 |   df.size         |返回大小
 |   df.dtypes       |返回每列数据类型
 |   df.T            |装置
+|   df.nidm         |维数
 
-***2-2）、对DataFrame对象数据方法***
+### 2-2）、对DataFrame对象数据方法
 |   方法            |                   说明                        |
 |-------------------|-----------------------------------------------|
-|   df.head()       |查看 DataFrame 数据中头部
+|   df.head(n)       |查看 DataFrame 数据中头部
 |   df.tail(3)      |查看 DataFrame 数据中尾部
 |   df.describe()   |查看对于数据的快速统计汇总。最大值、最小值等
 |   df.sort_index(axis=1, ascending=False)|按轴进行排序,False降序
@@ -49,7 +50,7 @@
 |   pd.isnull(df)       |对数据进行布尔填充
 
 
-**3）、连接函数：pd.concat(
+## 3）、连接函数：pd.concat(
     objs, axis=0, join='outer', join_axes=None, ignore_index=False,keys=None, levels=None, names=None, verify_integrity=False,copy=True)**
 
 |    参数           |                   说明                        |
@@ -65,7 +66,7 @@
 |       verify_integrity    |boolean，default False。检查新连接的轴是否包含重复项。这相对于实际的数据串联可能是非常昂贵的。
 |       copy                |boolean，default True。如果为False，请勿不必要地复制数据。
 
-**4）、对数据应用函数apply() 函数**
+## 4）、对数据应用函数apply() 函数##
 ```
 In [66]: df.apply(np.cumsum)
 Out[66]:
@@ -87,7 +88,7 @@ F 4.000000
 dtype: float64
 ```
 
-**5）、pandas的一些统计函数**
+## 5）、pandas的一些统计函数
 |       方法            |   说明
 |-----------------------|----------------------------------------------------------
 |       count	        |非 NA 值的数量
@@ -111,3 +112,14 @@ dtype: float64
 |       pct_change	    |计算百分数变化
 |       prod	        |不同维度上的乘积
 
+
+## 6)、Pandas读取csv数据集
+**pd.resd_csv(filepath_or_buffer,header,names,nrows,skiprows)**
+|       参数             |   说明
+|-----------------------|----------------------------------------------------------
+|   filepath_or_buffer |文件所在处的路径
+|   header              |指定哪一行作为表头。默认设置为0（即第一行作为表头），如果没有表头的话，要修改参数，设置header=None
+|   names               |指定列的名称，用列表表示。一般我们没有表头，即header=None时，这个用来添加列名就很有用啦！
+|   nrows               |需要读取的行数
+|   skiprows            |需要跳过的行号列表（从0开始)
+|   encoding            |乱码的时候用这个就是了
